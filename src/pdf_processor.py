@@ -1,10 +1,10 @@
-import fitz
+import pymupdf
 
 from text_cleaner import clean_text
 
 
 def extract_text_from_pdf(pdf_path):
-    document = fitz.open(pdf_path)
+    document = pymupdf.open(pdf_path)
 
     pages = []
 

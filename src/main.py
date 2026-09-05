@@ -1,6 +1,6 @@
 from pdf_processor import extract_text_from_pdf
 from chunker import create_chunks
-
+from embedding_model import generate_embeddings
 
 def main():
     pdf_path = "data/papers/sample.pdf"
@@ -9,12 +9,13 @@ def main():
 
     chunks = create_chunks(pages)
 
-    print(f"Number of chunks: {len(chunks)}")
+    embeddings = generate_embeddings(chunks)
 
-    for i, chunk in enumerate(chunks[:3], start=1):
-        print(f"\n--- Chunk {i} ---")
-        print(f"Page: {chunk['page']}")
-        print(chunk["text"])
+    print(f"Number of chunks: {len(chunks)}")
+    print(f"Embedding shape: {embeddings.shape}")
+
+    print("\nFirst embedding:")
+    print(embeddings[0])
 
 
 if __name__ == "__main__":
