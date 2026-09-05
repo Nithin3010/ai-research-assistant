@@ -1,4 +1,5 @@
 from pdf_processor import extract_text_from_pdf
+from chunker import create_chunks
 
 
 def main():
@@ -6,9 +7,14 @@ def main():
 
     pages = extract_text_from_pdf(pdf_path)
 
-    for page in pages:
-        print(f"\n--- Page {page['page']} ---")
-        print(page["text"])
+    chunks = create_chunks(pages)
+
+    print(f"Number of chunks: {len(chunks)}")
+
+    for i, chunk in enumerate(chunks[:3], start=1):
+        print(f"\n--- Chunk {i} ---")
+        print(f"Page: {chunk['page']}")
+        print(chunk["text"])
 
 
 if __name__ == "__main__":
